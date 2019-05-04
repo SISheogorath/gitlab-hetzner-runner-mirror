@@ -1,0 +1,38 @@
+image: quay.io/sheogorath/ubuntu-ci:18.04
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - deploy
+
+build-master:
+  stage: build
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    LANG: C.UTF-8
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+    - docker push "$CI_REGISTRY_IMAGE"
+  only:
+    - master
+  tags:
+    - docker
+
+build:
+  stage: build
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    LANG: C.UTF-8
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  except:
+    - master
+  tags:
+    - docker
