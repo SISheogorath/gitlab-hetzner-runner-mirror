@@ -84,7 +84,7 @@ check_interval = 0
   [runners.docker]
     image = "docker:stable"
     privileged = true
-    volumes = ["/cache", "/var/run/docker.sock:/var/run/docker.sock"]
+    volumes = ["/cache"]
   [runners.machine]
     IdleCount = 0
     IdleTime = 1800
