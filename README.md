@@ -55,7 +55,7 @@ Now modify your `config.toml` that appeared in `./hetzner_config` with the follo
   executor = "docker+machine"
   [runners.docker]
     privileged = true
-    volumes = ["/cache", "/var/run/docker.sock:/var/run/docker.sock"]
+    volumes = ["/cache"]
   [runners.machine]
     MachineDriver = "hetzner"
     MachineName = "machine-%s-gitlab-runner-2gb"
