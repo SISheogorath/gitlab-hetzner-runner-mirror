@@ -13,7 +13,7 @@ First of all you have to run the image using [docker](https://docker.com) or [po
 version: '2'
 services:
   hetzner-runner:
-    image: quay.io/sheogorath/gitlab-hetzner-runner:latest
+    image: quay.io/shivering-isles/gitlab-hetzner-runner:latest
     mem_limit: 128mb
     memswap_limit: 256mb
     volumes:
