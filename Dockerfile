@@ -1,4 +1,4 @@
-FROM gitlab/gitlab-runner:latest
+FROM docker.io/gitlab/gitlab-runner:v12.9.0
 
 LABEL maintainer="Sheogorath <sheogorath@shivering-isles.com>"
 ARG HETZNER_VERSION=1.2.2

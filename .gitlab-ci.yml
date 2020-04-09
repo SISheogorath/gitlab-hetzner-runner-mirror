@@ -1,38 +1,30 @@
-image: quay.io/sheogorath/ubuntu-ci:18.04
+image: quay.io/sheogorath/build-ah-engine
 
-services:
-  - docker:dind
+variables: 
+  LANG: C.UTF-8
+
+before_script:
+  - podman login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
 
 stages:
+  - analyse
   - build
+  - test
+  - tag
   - deploy
-
-build-master:
-  stage: build
-  variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    LANG: C.UTF-8
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker push "$CI_REGISTRY_IMAGE"
-  only:
-    - master
-  tags:
-    - docker
 
 build:
   stage: build
-  variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    LANG: C.UTF-8
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-  except:
+    - podman build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - podman push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+
+tagging-master:
+  stage: tag
+  script:
+    - podman pull "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+    - si-tagging -l "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" "$CI_REGISTRY_IMAGE" "$(grep -e 'FROM docker.io/gitlab/gitlab-runner:v' Dockerfile | sed -e 's/.*:v//')"
+    - podman images --format "{{.Repository}}:{{.Tag}}" "$CI_REGISTRY_IMAGE" | grep "$CI_REGISTRY_IMAGE" | xargs -L 1 podman push
+  only:
     - master
-  tags:
-    - docker
+
