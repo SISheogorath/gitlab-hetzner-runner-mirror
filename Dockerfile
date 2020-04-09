@@ -1,8 +1,8 @@
 FROM docker.io/gitlab/gitlab-runner:v12.9.0
 
 LABEL maintainer="Sheogorath <sheogorath@shivering-isles.com>"
-ARG HETZNER_VERSION=1.2.2
-ARG HETZNER_HASH=cd477aabb0d31937a2568c3f0d362f578790e0cbddd0c2b144145a1c597b5c60
+ARG HETZNER_VERSION=2.1.0
+ARG HETZNER_HASH=927b3ecaa939e0aac5913a7bc31e7aeab3a31575ad0d2c42645b52b66810b3fd
 
 
 RUN true \
