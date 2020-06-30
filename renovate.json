@@ -4,5 +4,7 @@
     "config:base",
     "docker:enableMajor"
   ],
-  "prConcurrentLimit": 5
+  "prConcurrentLimit": 5,
+  "automerge": true,
+  "gitLabAutomerge": true
 }
