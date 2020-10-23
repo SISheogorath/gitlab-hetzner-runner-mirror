@@ -18,6 +18,7 @@ services:
     memswap_limit: 256mb
     volumes:
       - "./hetzner_config:/etc/gitlab-runner"
+      - "./hetzner_machine:/root/.docker/machine"
     restart: always
 ```
 
