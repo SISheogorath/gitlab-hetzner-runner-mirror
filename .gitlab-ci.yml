@@ -30,6 +30,7 @@ test:
 cleanup_test:
   image: docker.io/library/ubuntu:21.04
   stage: cleanup_test
+  before_script: []
   script:
     - apt-get update
     - apt-get install -y hcloud-cli
