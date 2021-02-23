@@ -61,6 +61,7 @@ Now modify your `config.toml` that appeared in `./hetzner_config` with the follo
     MachineDriver = "hetzner"
     MachineName = "machine-%s-gitlab-runner-2gb"
     MachineOptions = [
+       "hetzner-server-type=cx21",
        "hetzner-api-token=<HETZNER API TOKEN>",
        "hetzner-image=ubuntu-18.04"
     ]
@@ -93,6 +94,7 @@ check_interval = 0
     MachineDriver = "hetzner"
     MachineName = "machine-%s-gitlab-runner-2gb"
     MachineOptions = [
+       "hetzner-server-type=cx21",
        "hetzner-api-token=<HETZNER API TOKEN>",
        "hetzner-image=ubuntu-18.04"
     ]
