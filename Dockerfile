@@ -1,6 +1,7 @@
 FROM docker.io/gitlab/gitlab-runner:v13.9.0
 
 LABEL maintainer="Sheogorath <sheogorath@shivering-isles.com>"
+# renovate: datasource=github-tags depName=JonasProgrammer/docker-machine-driver-hetzner
 ARG HETZNER_VERSION=3.2.0
 ARG HETZNER_HASH=d187fef169aff3100984b7d9ad842acf43ba09ccb398fd21e8d22de91576857f
 

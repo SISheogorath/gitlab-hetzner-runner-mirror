@@ -4,6 +4,13 @@
     "config:base",
     "docker:enableMajor"
   ],
+  "regexManagers": [
+        {
+            "fileMatch": ["^Dockerfile$"],
+            "matchStrings": ["# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\n\\s*ARG ([A-Z_]+_VERSION)=\"?(?<currentValue>.*?)\"?\\n"],
+            "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+        }
+  ],
   "prConcurrentLimit": 5,
   "automerge": true,
   "gitLabAutomerge": true
