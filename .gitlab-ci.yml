@@ -44,6 +44,5 @@ tagging-master:
     - podman pull "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
     - si-tagging -l "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" "$CI_REGISTRY_IMAGE" "$(grep -e 'FROM docker.io/gitlab/gitlab-runner:v' Dockerfile | sed -e 's/.*:v//')"
     - podman images --format "{{.Repository}}:{{.Tag}}" "$CI_REGISTRY_IMAGE" | grep "$CI_REGISTRY_IMAGE" | xargs -L 1 podman push
-  only:
-    - master
-
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
