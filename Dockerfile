@@ -1,4 +1,4 @@
-FROM docker.io/gitlab/gitlab-runner:v14.0.1
+FROM docker.io/gitlab/gitlab-runner:v14.1.0
 
 LABEL maintainer="Sheogorath <sheogorath@shivering-isles.com>"
 # renovate: datasource=github-tags depName=JonasProgrammer/docker-machine-driver-hetzner
