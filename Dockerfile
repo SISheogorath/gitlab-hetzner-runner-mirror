@@ -1,7 +1,7 @@
 FROM docker.io/library/golang:1.17.2 as driver-builder
 
 # renovate: datasource=git-tags depName=https://git.shivering-isles.com/github-mirror/JonasProgrammer/docker-machine-driver-hetzner.git
-ARG HETZNER_VERSION=3.4.0
+ARG HETZNER_VERSION=3.5.0
 
 ENV GO111MODULE=on
 
