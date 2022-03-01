@@ -13,7 +13,7 @@ RUN git clone --depth 3 --branch "$HETZNER_VERSION" https://git.shivering-isles.
 
 RUN go build -o docker-machine-driver-hetzner
 
-FROM docker.io/gitlab/gitlab-runner:v14.7.0
+FROM docker.io/gitlab/gitlab-runner:v14.8.2
 
 LABEL maintainer="Sheogorath <sheogorath@shivering-isles.com>"
 
