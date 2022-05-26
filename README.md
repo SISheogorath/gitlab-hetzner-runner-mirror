@@ -117,6 +117,34 @@ docker build -t "gitlab-hetzner-runner:latest" .
 
 If you want to contribute to this image directly, free free to sign up on the [SI GitLab instance](https://git.shivering-isles.com) and request access to [the project](https://git.shivering-isles.com/shivering-isles/gitlab-hetzner-runner).
 
+Workarounds
+---
+
+If this error is raised when creating a new machine:
+`Error creating machine: Error running provisioning: Unable to verify the Docker daemon is listening: Maximum number of retries (10) exceeded`
+
+It can be solved with the workaround provided in this issue in [docker-machine-driver-hetzner](https://github.com/JonasProgrammer/docker-machine-driver-hetzner/issues/54#issuecomment-899746133) repository
+
+```yaml
+[[runners]]
+  [runners.machine]
+    MachineOptions = [
+      """hetzner-user-data=
+        #cloud-config
+        runcmd:
+          - |
+            while sleep 1; do
+              if [ -e /etc/systemd/system/docker.service.d/10-machine.conf ]; then
+                sleep 15
+                systemctl restart docker
+                break
+              fi
+            done &
+      """
+    ]
+```
+
+
 Issues
 ---
 
