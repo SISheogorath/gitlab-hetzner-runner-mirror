@@ -30,7 +30,7 @@ test:
     - podman run -e CI_HETZNER_KEY --entrypoint /bin/bash "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" -c 'docker-machine create --driver hetzner --hetzner-image="debian-10" --hetzner-server-type="cx11" --hetzner-api-token="$CI_HETZNER_KEY"  ci-test-machine && docker-machine ls; docker-machine rm -y ci-test-machine'
 
 cleanup_test:
-  image: docker.io/library/ubuntu:22.04
+  image: docker.io/library/ubuntu:22.10
   stage: cleanup_test
   before_script: []
   script:
