@@ -15,6 +15,8 @@ RUN go build -o docker-machine-driver-hetzner
 
 FROM docker.io/gitlab/gitlab-runner:v15.1.1
 
+ARG DOCKER_MACHINE_VERSION=v0.16.2-gitlab.18
+
 LABEL maintainer="Sheogorath <sheogorath@shivering-isles.com>"
 
 RUN true \
@@ -25,3 +27,6 @@ RUN true \
     && true
 
 COPY --from=driver-builder /go/src/app/docker-machine-driver-hetzner /usr/local/bin/
+
+RUN curl "https://gitlab-docker-machine-downloads.s3.amazonaws.com/${DOCKER_MACHINE_VERSION}/docker-machine-Linux-x86_64" -o /usr/local/bin/docker-machine \
+    && chmod +x /usr/local/bin/docker-machine
