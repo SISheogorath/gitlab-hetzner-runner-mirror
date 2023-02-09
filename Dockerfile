@@ -15,7 +15,7 @@ RUN go build -o docker-machine-driver-hetzner
 
 FROM docker.io/gitlab/gitlab-runner:v15.7.1
 
-ARG DOCKER_MACHINE_VERSION=v0.16.2-gitlab.18
+ARG DOCKER_MACHINE_VERSION=v0.16.2-gitlab.19
 
 LABEL maintainer="Sheogorath <sheogorath@shivering-isles.com>"
 
