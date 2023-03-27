@@ -13,7 +13,7 @@ RUN git clone --depth 3 --branch "$HETZNER_VERSION" https://git.shivering-isles.
 
 RUN go build -o docker-machine-driver-hetzner
 
-FROM docker.io/gitlab/gitlab-runner:v15.9.1
+FROM docker.io/gitlab/gitlab-runner:v15.10.0
 
 ARG DOCKER_MACHINE_VERSION=v0.16.2-gitlab.19
 
