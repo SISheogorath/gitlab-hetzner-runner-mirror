@@ -4,6 +4,7 @@ FROM docker.io/library/golang:1.20.6 as driver-builder
 ARG HETZNER_VERSION=5.0.0
 
 ENV GO111MODULE=on
+ENV CGO_ENABLED=0
 
 RUN mkdir -p /go/src/app
 
