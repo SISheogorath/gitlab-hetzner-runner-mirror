@@ -27,7 +27,7 @@ test:
   script:
     - curl -L https://github.com/hetznercloud/cli/releases/download/v1.16.2/hcloud-linux-amd64.tar.gz |  tar -zxv hcloud
     - sha256sum -c <(echo "a517c1362edd3c6374c1dd12ba58e3fe89d67ec7db37b12aa5b904d409182d25  hcloud")
-    - podman run -e CI_HETZNER_KEY --entrypoint /bin/bash "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" -c 'docker-machine create --driver hetzner --hetzner-image="debian-10" --hetzner-server-type="cx11" --hetzner-api-token="$CI_HETZNER_KEY"  ci-test-machine && docker-machine ls; docker-machine rm -y ci-test-machine'
+    - podman run -e CI_HETZNER_KEY --entrypoint /bin/bash "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" -c 'docker-machine create --driver hetzner --hetzner-image="debian-12" --hetzner-server-type="cx11" --hetzner-api-token="$CI_HETZNER_KEY"  ci-test-machine && docker-machine ls; docker-machine rm -y ci-test-machine'
 
 cleanup_test:
   image: docker.io/library/ubuntu:23.10

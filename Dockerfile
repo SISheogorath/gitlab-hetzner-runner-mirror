@@ -1,7 +1,7 @@
 FROM docker.io/library/golang:1.20.6 as driver-builder
 
 # renovate: datasource=git-tags depName=https://git.shivering-isles.com/github-mirror/JonasProgrammer/docker-machine-driver-hetzner.git
-ARG HETZNER_VERSION=4.0.0
+ARG HETZNER_VERSION=5.0.0
 
 ENV GO111MODULE=on
 
@@ -13,10 +13,10 @@ RUN git clone --depth 3 --branch "$HETZNER_VERSION" https://git.shivering-isles.
 
 RUN go build -o docker-machine-driver-hetzner
 
-FROM docker.io/gitlab/gitlab-runner:v16.1.0
+FROM docker.io/gitlab/gitlab-runner:v16.3.0
 
 # renovate: datasource=git-tags depName=https://gitlab.com/gitlab-org/ci-cd/docker-machine.git
-ARG DOCKER_MACHINE_VERSION=v0.16.2-gitlab.21
+ARG DOCKER_MACHINE_VERSION=v0.16.2-gitlab.22
 
 LABEL maintainer="Sheogorath <sheogorath@shivering-isles.com>"
 
