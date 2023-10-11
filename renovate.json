@@ -13,7 +13,7 @@
   ],
   "packageRules": [
      {
-        "datasource": "git-tags",
+        "matchDatasources": ["git-tags"],
         "matchPackageNames": ["https://gitlab.com/gitlab-org/ci-cd/docker-machine.git"],
         "allowedVersions": "/^v[0-9]+\\.[0-9]+\\.[0-9]+-gitlab\\.[0-9]+$/"
      }
