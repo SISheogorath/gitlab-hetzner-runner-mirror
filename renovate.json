@@ -11,6 +11,13 @@
             "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
         }
   ],
+  "packageRules": [
+     {
+        "datasource": "git-tags",
+        "matchPackageNames": ["https://gitlab.com/gitlab-org/ci-cd/docker-machine.git"],
+        "allowedVersions": "/^v[0-9]+\\.[0-9]+\\.[0-9]+-gitlab\\.[0-9]+$/"
+     }
+  ],
   "prConcurrentLimit": 5,
   "automerge": true,
   "gitLabAutomerge": true
