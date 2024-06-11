@@ -1,3 +1,12 @@
+include:
+  - project: 'shivering-isles/infrastructure-gitops'
+    ref: v24.07
+    file: '/shared/earthly/gitlab-earthly-cloud.yaml'
+
+
+
+
+
 image: quay.io/sheogorath/build-ah-engine
 
 variables: 
@@ -16,11 +25,25 @@ stages:
 
 build:
   stage: build
+  extends: .earthly-cloud
+  variables:
+    KUBERNETES_CPU_REQUEST: "100m"
+    KUBERNETES_CPU_LIMIT: "1"
+    KUBERNETES_MEMORY_REQUEST: "128Mi"
+    KUBERNETES_MEMORY_LIMIT: "1Gi"
+
+    KUBERNETES_SERVICE_CPU_REQUESTS: "${KUBERNETES_CPU_REQUEST}"
+    KUBERNETES_SERVICE_CPU_LIMIT: "${KUBERNETES_CPU_LIMIT}"
+    KUBERNETES_SERVICE_MEMORY_REQUEST: "${KUBERNETES_MEMORY_REQUEST}"
+    KUBERNETES_SERVICE_MEMORY_LIMIT: "${KUBERNETES_MEMORY_LIMIT}"
+
+    KUBERNETES_HELPER_CPU_REQUESTS: "${KUBERNETES_CPU_REQUEST}"
+    KUBERNETES_HELPER_CPU_LIMIT: "${KUBERNETES_CPU_LIMIT}"
+    KUBERNETES_HELPER_MEMORY_REQUEST: "${KUBERNETES_MEMORY_REQUEST}"
+    KUBERNETES_HELPER_MEMORY_LIMIT: "${KUBERNETES_MEMORY_LIMIT}"
+  before_script: []
   script:
-    - podman build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
-    - podman push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-  tags:
-    - ram-4gb
+    - earthly --push docker-build --tag "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
 
 test:
   stage: test
