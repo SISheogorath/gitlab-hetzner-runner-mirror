@@ -14,7 +14,7 @@ RUN git clone --depth 3 --branch "$HETZNER_VERSION" https://git.shivering-isles.
 
 RUN go build -o docker-machine-driver-hetzner
 
-FROM docker.io/gitlab/gitlab-runner:v17.6.0
+FROM docker.io/gitlab/gitlab-runner:v17.7.0
 
 # renovate: datasource=git-tags depName=https://gitlab.com/gitlab-org/ci-cd/docker-machine.git
 ARG DOCKER_MACHINE_VERSION=v0.16.2-gitlab.30
