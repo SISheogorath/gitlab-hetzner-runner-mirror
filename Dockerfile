@@ -17,7 +17,7 @@ RUN go build -o docker-machine-driver-hetzner
 FROM docker.io/gitlab/gitlab-runner:v18.2.2
 
 # renovate: datasource=git-tags depName=https://gitlab.com/gitlab-org/ci-cd/docker-machine.git
-ARG DOCKER_MACHINE_VERSION=v0.16.2-gitlab.40
+ARG DOCKER_MACHINE_VERSION=v0.16.2-gitlab.41
 
 LABEL maintainer="Sheogorath <sheogorath@shivering-isles.com>"
 
