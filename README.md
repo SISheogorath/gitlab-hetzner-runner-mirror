@@ -94,9 +94,9 @@ check_interval = 0
     MachineDriver = "hetzner"
     MachineName = "machine-%s-gitlab-runner-2gb"
     MachineOptions = [
-       "hetzner-server-type=cx21",
+       "hetzner-server-type=cx23",
        "hetzner-api-token=<HETZNER API TOKEN>",
-       "hetzner-image=ubuntu-18.04"
+       "hetzner-image=ubuntu-22.04"
     ]
 ```
 
